@@ -256,6 +256,19 @@ const DoctorDashboard = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [showFullAddress, setShowFullAddress] = useState(false);
+
+  // Mock Ethereum address for the doctor
+  const doctorEthAddress = '0xabc1234567890def1234567890abcdef12345678';
+
+  const getMaskedAddress = (address) => {
+    if (!address || address.length < 7) return address;
+    return `0x...${address.slice(-5)}`;
+  };
+
+  const handleAddressClick = () => {
+    setShowFullAddress(!showFullAddress);
+  };
 
   const getStatusIcon = (status) => {
     switch (status) {
@@ -449,6 +462,15 @@ const DoctorDashboard = () => {
                 <div className="user-details">
                   <p className="user-name">Dr. Sarah Mitchell</p>
                   <p className="user-specialty">Internal Medicine</p>
+                  <div className="user-eth-address">
+                    <span 
+                      className="eth-address-display"
+                      onClick={handleAddressClick}
+                      title={showFullAddress ? "Click to hide full address" : "Click to reveal full address"}
+                    >
+                      {showFullAddress ? doctorEthAddress : getMaskedAddress(doctorEthAddress)}
+                    </span>
+                  </div>
                 </div>
                 <ChevronDown className={`user-dropdown-icon ${showUserDropdown ? 'user-dropdown-icon-rotated' : ''}`} />
               </div>
