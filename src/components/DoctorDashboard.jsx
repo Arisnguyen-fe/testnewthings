@@ -471,6 +471,15 @@ const DoctorDashboard = () => {
                       {showFullAddress ? doctorEthAddress : getMaskedAddress(doctorEthAddress)}
                     </span>
                   </div>
+                  <div className="user-eth-address">
+                    <span 
+                      className="eth-address-display"
+                      onClick={handleAddressClick}
+                      title={showFullAddress ? "Click to hide full address" : "Click to reveal full address"}
+                    >
+                      {showFullAddress ? doctorEthAddress : getMaskedAddress(doctorEthAddress)}
+                    </span>
+                  </div>
                 </div>
                 <ChevronDown className={`user-dropdown-icon ${showUserDropdown ? 'user-dropdown-icon-rotated' : ''}`} />
               </div>
